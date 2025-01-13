@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="SingleFinite.Example.Views.Pages.Dialogs.FirstDialogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    xmlns:mvvm="using:SingleFinite.Mvvm.WinUI"
+    mc:Ignorable="d">
+
+    <mvvm:DialogPresenterContent
+        TopBar="Example title for first dialog"
+        Content="This is an example of a standard dialog that uses the DialogPresenterContent control.  Click the Show second dialog button to launch a second dialog.">
+        <mvvm:DialogPresenterContent.BottomBar>
+            <mvvm:DialogPresenterButtons
+                PrimaryButtonText="Show second dialog"
+                PrimaryButtonClick="{x:Bind ViewModel.ShowSecondDialog}"
+                CloseButtonText="Close"
+                CloseButtonClick="{x:Bind ViewModel.Close}"
+                />
+        </mvvm:DialogPresenterContent.BottomBar>
+    </mvvm:DialogPresenterContent>
+
+</UserControl>
