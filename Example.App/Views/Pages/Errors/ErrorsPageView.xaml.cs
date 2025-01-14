@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views.Pages.Errors;
+namespace SingleFinite.Example.App.Views.Pages.Errors;
 
 public sealed partial class ErrorsPageView : UserControl, IView<ErrorsPageViewModel>
 {

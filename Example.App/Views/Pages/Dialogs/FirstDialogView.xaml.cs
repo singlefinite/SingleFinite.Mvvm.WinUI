@@ -19,38 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using SingleFinite.Example.Models;
-using Microsoft.UI.Xaml;
+using SingleFinite.Example.Models.Pages.Dialogs;
+using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views;
+namespace SingleFinite.Example.App.Views.Pages.Dialogs;
 
-/// <summary>
-/// The host window for the application.
-/// </summary>
-public sealed partial class MainWindow : Window, IView<HostViewModel>
+public sealed partial class FirstDialogView : UserControl, IView<FirstDialogViewModel>
 {
-    #region Constructors
-
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    /// <param name="viewModel">The view model for the view.</param>
-    public MainWindow(HostViewModel viewModel)
+    public FirstDialogView(FirstDialogViewModel viewModel)
     {
+        this.InitializeComponent();
         ViewModel = viewModel;
-        InitializeComponent();
-        ExtendsContentIntoTitleBar = true;
     }
 
-    #endregion
-
-    #region Properties
-
-    /// <summary>
-    /// The view model for the view.
-    /// </summary>
-    public HostViewModel ViewModel { get; }
-
-    #endregion
+    public FirstDialogViewModel ViewModel { get; }
 }

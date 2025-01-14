@@ -21,8 +21,8 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using SingleFinite.Example.App.Views;
 using SingleFinite.Example.Models;
-using SingleFinite.Example.Views;
 using SingleFinite.Mvvm;
 using SingleFinite.Mvvm.Services;
 using SingleFinite.Mvvm.WinUI;

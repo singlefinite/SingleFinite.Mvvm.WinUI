@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views.Pages.MappedProperties;
+namespace SingleFinite.Example.App.Views.Pages.MappedProperties;
 
 public sealed partial class MappedPropertiesPageView : UserControl, IView<MappedPropertiesPageViewModel>
 {

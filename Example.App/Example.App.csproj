@@ -42,8 +42,39 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Example.Models\Example.Models.csproj" />
-    <ProjectReference Include="..\Example.Views\Example.Views.csproj" />
     <ProjectReference Include="..\SingleFinite.Mvvm.WinUI\SingleFinite.Mvvm.WinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MessageDialogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NavigatorView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\Dialogs\DialogsPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\Dialogs\FirstDialogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\Dialogs\SecondDialogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\Errors\ErrorsPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\Frame\FramePageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\Home\HomePageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\MappedProperties\MappedPropertiesPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
   <!--

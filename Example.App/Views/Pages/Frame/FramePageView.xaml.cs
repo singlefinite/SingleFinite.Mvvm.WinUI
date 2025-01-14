@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views.Pages.Frame;
+namespace SingleFinite.Example.App.Views.Pages.Frame;
 
 public sealed partial class FramePageView : UserControl, IView<FramePageViewModel>
 {

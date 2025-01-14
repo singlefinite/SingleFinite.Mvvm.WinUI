@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views.Pages;
+namespace SingleFinite.Example.App.Views.Pages;
 
 public sealed partial class DialogsPageView : UserControl, IView<DialogsPageViewModel>
 {

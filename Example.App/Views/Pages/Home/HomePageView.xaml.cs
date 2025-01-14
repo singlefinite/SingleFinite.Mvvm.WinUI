@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views.Pages.Home;
+namespace SingleFinite.Example.App.Views.Pages.Home;
 
 public sealed partial class HomePageView : UserControl, IView<HomePageViewModel>
 {

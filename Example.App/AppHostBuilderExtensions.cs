@@ -19,19 +19,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using SingleFinite.Example.Models.Pages.Dialogs;
-using Microsoft.UI.Xaml.Controls;
+using System.Reflection;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views.Pages.Dialogs;
+namespace SingleFinite.Example.App.Views;
 
-public sealed partial class SecondDialogView : UserControl, IView<SecondDialogViewModel>
+public static class AppHostBuilderExtensions
 {
-    public SecondDialogView(SecondDialogViewModel viewModel)
-    {
-        this.InitializeComponent();
-        ViewModel = viewModel;
-    }
-
-    public SecondDialogViewModel ViewModel { get; }
+    public static AppHostBuilder AddExampleViews(this AppHostBuilder builder) =>
+        builder.AddViews(views => views.Scan(Assembly.GetAssembly(typeof(MainWindow))));
 }

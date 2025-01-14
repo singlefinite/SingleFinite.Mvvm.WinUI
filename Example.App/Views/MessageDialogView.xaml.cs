@@ -19,13 +19,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Reflection;
+using SingleFinite.Example.Models;
+using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views;
+namespace SingleFinite.Example.App.Views;
 
-public static class AppHostBuilderExtensions
+public sealed partial class MessageDialogView :
+    UserControl,
+    IView<MessageDialogViewModel>
 {
-    public static AppHostBuilder AddExampleViews(this AppHostBuilder builder) =>
-        builder.AddViews(views => views.Scan(Assembly.GetAssembly(typeof(MainWindow))));
+    public MessageDialogView(MessageDialogViewModel viewModel)
+    {
+        this.InitializeComponent();
+        ViewModel = viewModel;
+    }
+
+    public MessageDialogViewModel ViewModel { get; }
 }

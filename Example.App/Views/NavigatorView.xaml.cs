@@ -19,21 +19,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System.Linq;
 using SingleFinite.Example.Models;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Views;
+namespace SingleFinite.Example.App.Views;
 
-public sealed partial class MessageDialogView :
-    UserControl,
-    IView<MessageDialogViewModel>
+public sealed partial class NavigatorView : UserControl, IView<NavigatorViewModel>
 {
-    public MessageDialogView(MessageDialogViewModel viewModel)
+    public NavigatorView(NavigatorViewModel viewModel)
     {
-        this.InitializeComponent();
+        InitializeComponent();
         ViewModel = viewModel;
+
+        ViewModel.MapProperty(
+            mappedObject: this,
+            mappedPropertyName: nameof(SelectedMenuItem),
+            sourcePropertyNames: nameof(ViewModel.SelectedPage)
+        );
     }
 
-    public MessageDialogViewModel ViewModel { get; }
+    public NavigatorViewModel ViewModel { get; }
+
+    public object? SelectedMenuItem
+    {
+        get => navigationView.MenuItems.FirstOrDefault(menuItem =>
+            ((menuItem as FrameworkElement)?.Tag as string) == ViewModel.SelectedPage
+        );
+        set => ViewModel.SelectedPage =
+            (navigationView.SelectedItem as FrameworkElement)?.Tag as string;
+    }
 }
