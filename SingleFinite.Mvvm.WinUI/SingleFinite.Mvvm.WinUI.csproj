@@ -20,6 +20,7 @@
     <Authors>Single Finite</Authors>
     <PackageTags>MVVM</PackageTags>
     <PackageIcon>ICON.png</PackageIcon>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
