@@ -9,7 +9,6 @@
     <UseWinUI>true</UseWinUI>
     <Nullable>enable</Nullable>
     <Title>SingleFinite MVVM WinUI</Title>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Company>Single Finite</Company>
     <PackageProjectUrl>https://github.com/singlefinite/SingleFinite.Mvvm.WinUI</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
