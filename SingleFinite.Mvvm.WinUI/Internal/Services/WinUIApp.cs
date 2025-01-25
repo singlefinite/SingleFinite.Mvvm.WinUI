@@ -20,8 +20,11 @@
 // SOFTWARE.
 
 using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.Windows.AppLifecycle;
 using SingleFinite.Mvvm.Services;
 using SingleFinite.Mvvm.WinUI.Services;
 using Windows.Foundation;
@@ -101,6 +104,14 @@ internal partial class WinUIApp<THostViewModel>(
     public void Activate()
     {
         ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+        // This is a workaround for when the Activate method doesn't bring the
+        // main window to the foreground.
+        //
+        var processId = AppInstance.GetCurrent().ProcessId;
+        var process = Process.GetProcessById((int)processId);
+        Win32.SetForegroundWindow(process.MainWindowHandle);
+
         mainWindow.Current?.Activate();
     }
 
