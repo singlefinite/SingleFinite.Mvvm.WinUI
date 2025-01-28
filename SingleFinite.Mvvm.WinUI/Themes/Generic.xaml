@@ -1,8 +1,16 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SingleFinite.Mvvm.WinUI">
+    xmlns:local="using:SingleFinite.Mvvm.WinUI"
+    xmlns:internal="using:SingleFinite.Mvvm.WinUI.Internal">
 
+    <Style TargetType="internal:PresenterPage" >
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    
     <Style TargetType="local:Presenter" >
         <Setter Property="Template">
             <Setter.Value>

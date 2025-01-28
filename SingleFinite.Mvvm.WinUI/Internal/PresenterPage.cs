@@ -28,20 +28,8 @@ namespace SingleFinite.Mvvm.WinUI.Internal;
 /// <summary>
 /// Page used to display a view from a presenter control.
 /// </summary>
-public sealed partial class PresenterPage : Page
+internal sealed partial class PresenterPage : Page
 {
-    #region Constructors
-
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public PresenterPage()
-    {
-        InitializeComponent();
-    }
-
-    #endregion
-
     #region Methods
 
     /// <summary>
@@ -53,7 +41,7 @@ public sealed partial class PresenterPage : Page
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        ViewContent.Child = e.Parameter as UIElement;
+        Content = e.Parameter as UIElement;
     }
 
     /// <summary>
@@ -63,7 +51,7 @@ public sealed partial class PresenterPage : Page
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
         base.OnNavigatedFrom(e);
-        ViewContent.Child = null;
+        Content = null;
     }
 
     #endregion
