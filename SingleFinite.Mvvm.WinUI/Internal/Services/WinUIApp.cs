@@ -21,7 +21,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
@@ -37,9 +36,11 @@ namespace SingleFinite.Mvvm.WinUI.Internal.Services;
 /// <param name="appHost">Listen for closed event.</param>
 /// <param name="mainWindow">Hold the main window for the app.</param>
 /// <param name="viewBuilder">Used to build HostWindow view.</param>
-/// <param name="eventObserver">Used to observe events.</param>
 /// <param name="mainDispatcher">The main dispatcher.</param>
 /// <param name="exceptionHandler">Used to log unhandled exceptions.</param>
+/// <param name="cancellationTokenProvider">
+/// Used to unsubscribe observers.
+/// </param>
 /// <typeparam name="THostViewModel">
 /// The type of view model to build for the HostWindow.
 /// </typeparam>
@@ -47,9 +48,9 @@ internal partial class WinUIApp<THostViewModel>(
     IAppHost appHost,
     IMainWindowProvider mainWindow,
     IViewBuilder viewBuilder,
-    IEventObserver eventObserver,
-    IMainDispatcher mainDispatcher,
-    IExceptionHandler exceptionHandler
+    IDispatcherMain mainDispatcher,
+    IExceptionHandler exceptionHandler,
+    ICancellationTokenProvider cancellationTokenProvider
 ) :
     IWinUIApp,
     IDisposable
@@ -74,30 +75,33 @@ internal partial class WinUIApp<THostViewModel>(
         if (mainWindow.Current is not null)
             return;
 
-        mainWindow.Current = viewBuilder.Build<THostViewModel>() as Window ??
+        var hostWindow = viewBuilder.Build<THostViewModel>() as Window ??
             throw new InvalidOperationException(
                 "The view for the host view model must be a Window."
             );
+
+        mainWindow.Current = hostWindow;
 
         Application.Current.UnhandledException += (sender, e) =>
         {
             e.Handled = exceptionHandler.Handle(e.Exception);
         };
 
-        eventObserver.Observe(
-            observable: appHost.Closed,
-            callback: () => mainWindow.Current.Close()
-        );
+        appHost.Closed
+            .Observe(hostWindow.Close)
+            .On(cancellationTokenProvider.CancellationToken);
 
-        eventObserver.Observe<TypedEventHandler<AppWindow, AppWindowClosingEventArgs>>(
-            register: handler => mainWindow.Current.AppWindow.Closing += handler,
-            unregister: handler => mainWindow.Current.AppWindow.Closing -= handler,
-            callback: (_, args) =>
-            {
-                args.Cancel = true;
-                mainDispatcher.Run(appHost.CloseAsync);
-            }
-        );
+        Observable
+            .Observe<TypedEventHandler<AppWindow, AppWindowClosingEventArgs>>(
+                register: handler => hostWindow.AppWindow.Closing += handler,
+                unregister: handler => hostWindow.AppWindow.Closing -= handler,
+                handler: _ => (_, args) =>
+                {
+                    args.Cancel = true;
+                    mainDispatcher.Run(appHost.CloseAsync);
+                }
+            )
+            .On(cancellationTokenProvider.CancellationToken);
     }
 
     /// <inheritdoc/>

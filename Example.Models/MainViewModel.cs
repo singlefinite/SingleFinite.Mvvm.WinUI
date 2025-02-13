@@ -29,12 +29,10 @@ namespace SingleFinite.Example.Models;
 /// The host view model.
 /// </summary>
 /// <param name="appHost">The app host.</param>
-/// <param name="eventObserver">Event observer.</param>
 /// <param name="dialogs">Dialog presenter.</param>
 /// <param name="content">Content presenter.</param>
 public partial class HostViewModel(
     IAppHost appHost,
-    IEventObserver eventObserver,
     IDialogs dialogs,
     IPresentableItem content
 ) : ViewModel
@@ -55,23 +53,29 @@ public partial class HostViewModel(
 
     #region Methods
 
+    /// <summary>
+    /// Initialize observers and presentables.
+    /// </summary>
     protected override void OnInitialize()
     {
-        eventObserver
-            .Observe(appHost.Closing)
-            .OnEach(async args =>
-            {
-                var dialog = await dialogs.ShowAsync<MessageDialogViewModel, MessageDialogViewModel.Context>(
-                    new(
-                        Title: "Close App",
-                        Message: "Do you want to close the app?",
-                        PrimaryText: "Yes",
-                        CancelText: "No"
-                    )
-                );
+        appHost.Closing
+            .Observe()
+            .OnEach(
+                async args =>
+                {
+                    var dialog = await dialogs.ShowAsync<MessageDialogViewModel, MessageDialogViewModel.Context>(
+                        new(
+                            Title: "Close App",
+                            Message: "Do you want to close the app?",
+                            PrimaryText: "Yes",
+                            CancelText: "No"
+                        )
+                    );
 
-                args.Cancel = dialog.Result == MessageDialogViewModel.MessageResult.Cancel;
-            });
+                    args.Cancel = dialog.Result == MessageDialogViewModel.MessageResult.Cancel;
+                }
+            )
+            .On(this);
 
         content.Set<NavigatorViewModel>();
     }

@@ -11,15 +11,19 @@ namespace SingleFinite.Mvvm.WinUI.Internal.Services;
 /// <see cref="DispatcherQueue"/> from the main window to execute functions.
 /// </summary>
 /// <param name="mainWindow">The main window for the app.</param>
+/// <param name="cancellationTokenProvider">
+/// The service that provides the CancellationToken used by this service.
+/// </param>
 /// <param name="exceptionHandler">
 /// The exception handler used by this dispatcher to handle exceptions.
 /// </param>
-internal partial class MainDispatcherQueue(
+internal partial class DispatcherMainQueue(
     IMainWindow mainWindow,
+    ICancellationTokenProvider cancellationTokenProvider,
     IExceptionHandler exceptionHandler
 ) :
-    DispatcherBase(exceptionHandler),
-    IAppMainDispatcher,
+    DispatcherBase(cancellationTokenProvider, exceptionHandler),
+    IAppDispatcherMain,
     IDisposable
 {
     #region Fields
