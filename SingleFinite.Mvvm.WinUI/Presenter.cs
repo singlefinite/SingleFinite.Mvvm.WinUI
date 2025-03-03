@@ -87,9 +87,11 @@ public sealed partial class Presenter : ContentControl
         if (_sourceViewObserver is not null)
             return;
 
-        _sourceViewObserver = Source?.CurrentChanged?.Observe(
-            args => UpdateContent(args.View)
-        );
+        _sourceViewObserver = Source?.CurrentChanged
+            ?.Observe()
+            ?.OnEach(
+                args => UpdateContent(args.View)
+            );
 
         UpdateContent(Source?.Current);
     }

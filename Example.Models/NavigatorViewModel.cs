@@ -19,11 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using SingleFinite.Example.Models.Pages.DerivedProperties;
 using SingleFinite.Example.Models.Pages.Dialogs;
 using SingleFinite.Example.Models.Pages.Errors;
 using SingleFinite.Example.Models.Pages.Frame;
 using SingleFinite.Example.Models.Pages.Home;
-using SingleFinite.Example.Models.Pages.MappedProperties;
 using SingleFinite.Mvvm;
 using SingleFinite.Mvvm.Services;
 
@@ -57,7 +57,7 @@ public partial class NavigatorViewModel(
             NavigatorPages.Home => typeof(HomePageViewModel),
             NavigatorPages.Dialogs => typeof(DialogsPageViewModel),
             NavigatorPages.Frame => typeof(FramePageViewModel),
-            NavigatorPages.MappedProperties => typeof(MappedPropertiesPageViewModel),
+            NavigatorPages.DerivedProperties => typeof(DerivedPropertiesPageViewModel),
             NavigatorPages.Errors => typeof(ErrorsPageViewModel),
             _ => null
         };
@@ -71,6 +71,11 @@ public partial class NavigatorViewModel(
             return;
         }
 
-        presentableItem.Set(new ViewModelDescriptor(viewModelType));
+        presentableItem.Set(
+            new ViewModelDescriptor(
+                ViewModelType: viewModelType,
+                ViewModelParameters: []
+            )
+        );
     }
 }

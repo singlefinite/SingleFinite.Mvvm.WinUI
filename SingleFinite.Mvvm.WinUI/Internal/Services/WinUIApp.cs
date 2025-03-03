@@ -88,7 +88,8 @@ internal partial class WinUIApp<THostViewModel>(
         };
 
         appHost.Closed
-            .Observe(hostWindow.Close)
+            .Observe()
+            .OnEach(hostWindow.Close)
             .On(cancellationTokenProvider.CancellationToken);
 
         Observable

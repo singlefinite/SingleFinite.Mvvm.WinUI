@@ -63,8 +63,8 @@ public partial class HostViewModel(
             .OnEach(
                 async args =>
                 {
-                    var dialog = await dialogs.ShowAsync<MessageDialogViewModel, MessageDialogViewModel.Context>(
-                        new(
+                    var dialog = await dialogs.ShowAsync<MessageDialogViewModel>(
+                        new MessageDialogViewModel.Context(
                             Title: "Close App",
                             Message: "Do you want to close the app?",
                             PrimaryText: "Yes",

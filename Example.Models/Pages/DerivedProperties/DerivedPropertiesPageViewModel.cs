@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.Models.Pages.MappedProperties;
+namespace SingleFinite.Example.Models.Pages.DerivedProperties;
 
-public class MappedPropertiesPageViewModel : ViewModel
+public class DerivedPropertiesPageViewModel : ViewModel
 {
 }

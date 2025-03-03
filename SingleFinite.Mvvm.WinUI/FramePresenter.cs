@@ -120,12 +120,14 @@ public sealed partial class FramePresenter : Control
             return;
 
         _sourceViewObserver =
-            Source?.CurrentChanged?.Observe(
-                args => UpdateContent(
-                    view: args.View,
-                    isNew: args.IsNew
-                )
-            );
+            Source?.CurrentChanged
+                ?.Observe()
+                ?.OnEach(
+                    args => UpdateContent(
+                        view: args.View,
+                        isNew: args.IsNew
+                    )
+                );
 
         UpdateContent(
             view: Source?.Current,

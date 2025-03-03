@@ -34,9 +34,9 @@
                 Content="Frame"
                 />
             <NavigationViewItem
-                Tag="{x:Bind m:NavigatorPages.MappedProperties}"
+                Tag="{x:Bind m:NavigatorPages.DerivedProperties}"
                 Icon="Link"
-                Content="Mapped Properties"
+                Content="Derived Properties"
                 />
             <NavigationViewItem
                 Tag="{x:Bind m:NavigatorPages.Errors}"

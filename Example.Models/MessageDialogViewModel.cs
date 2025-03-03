@@ -26,7 +26,7 @@ namespace SingleFinite.Example.Models;
 public partial class MessageDialogViewModel(
     MessageDialogViewModel.Context? context = null
 ) :
-    ViewModel<MessageDialogViewModel.Context>,
+    ViewModel,
     IClosable
 {
     public MessageResult Result { get; private set; } = MessageResult.Cancel;

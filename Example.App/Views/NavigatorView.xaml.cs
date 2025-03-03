@@ -34,9 +34,9 @@ public sealed partial class NavigatorView : UserControl, IView<NavigatorViewMode
         InitializeComponent();
         ViewModel = viewModel;
 
-        ViewModel.MapProperty(
-            mappedObject: this,
-            mappedPropertyName: nameof(SelectedMenuItem),
+        ViewModel.AddDerivedProperty(
+            derivedPropertyOwner: this,
+            derivedPropertyName: nameof(SelectedMenuItem),
             sourcePropertyNames: nameof(ViewModel.SelectedPage)
         );
     }
