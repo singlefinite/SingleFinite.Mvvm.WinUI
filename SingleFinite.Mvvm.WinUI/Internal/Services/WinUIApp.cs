@@ -41,10 +41,10 @@ namespace SingleFinite.Mvvm.WinUI.Internal.Services;
 /// <param name="cancellationTokenProvider">
 /// Used to unsubscribe observers.
 /// </param>
-/// <typeparam name="THostViewModel">
+/// <typeparam name="TMainViewModel">
 /// The type of view model to build for the HostWindow.
 /// </typeparam>
-internal partial class WinUIApp<THostViewModel>(
+internal partial class WinUIApp<TMainViewModel>(
     IAppHost appHost,
     IMainWindowProvider mainWindow,
     IViewBuilder viewBuilder,
@@ -54,7 +54,7 @@ internal partial class WinUIApp<THostViewModel>(
 ) :
     IWinUIApp,
     IDisposable
-    where THostViewModel : IViewModel
+    where TMainViewModel : IViewModel
 {
     #region Fields
 
@@ -75,7 +75,7 @@ internal partial class WinUIApp<THostViewModel>(
         if (mainWindow.Current is not null)
             return;
 
-        var hostWindow = viewBuilder.Build<THostViewModel>() as Window ??
+        var hostWindow = viewBuilder.Build<TMainViewModel>() as Window ??
             throw new InvalidOperationException(
                 "The view for the host view model must be a Window."
             );

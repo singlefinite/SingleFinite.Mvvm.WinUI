@@ -20,9 +20,10 @@
 // SOFTWARE.
 
 using System.Reflection;
+using SingleFinite.Example.App.Views;
 using SingleFinite.Mvvm;
 
-namespace SingleFinite.Example.App.Views;
+namespace SingleFinite.Example.App;
 
 public static class AppHostBuilderExtensions
 {

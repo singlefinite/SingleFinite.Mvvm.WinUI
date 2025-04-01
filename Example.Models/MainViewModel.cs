@@ -31,7 +31,7 @@ namespace SingleFinite.Example.Models;
 /// <param name="appHost">The app host.</param>
 /// <param name="dialogs">Dialog presenter.</param>
 /// <param name="content">Content presenter.</param>
-public partial class HostViewModel(
+public partial class MainViewModel(
     IAppHost appHost,
     IDialogs dialogs,
     IPresentableItem content

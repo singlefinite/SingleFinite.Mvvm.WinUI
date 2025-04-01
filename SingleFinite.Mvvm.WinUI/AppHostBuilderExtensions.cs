@@ -36,17 +36,17 @@ public static class AppHostBuilderExtensions
     /// <summary>
     /// Add WinUI services to the app.
     /// </summary>
-    /// <typeparam name="THostViewModel">
+    /// <typeparam name="TMainViewModel">
     /// The type of view model that will be built as the entry point for app.
     /// The view registered for the view model must be of type 
     /// <see cref="Microsoft.UI.Xaml.Window"/>
     /// </typeparam>
     /// <param name="builder">The builder to extend.</param>
     /// <returns>The builder that was passed in.</returns>
-    public static AppHostBuilder AddWinUI<THostViewModel>(
+    public static AppHostBuilder AddWinUI<TMainViewModel>(
         this AppHostBuilder builder
     )
-        where THostViewModel : IViewModel => builder
+        where TMainViewModel : IViewModel => builder
             .AddServices(
                 services =>
                 {
@@ -61,7 +61,7 @@ public static class AppHostBuilderExtensions
                             return serviceProvider.GetRequiredService<MainWindow>();
                         })
                         .AddSingleton<IAppDispatcherMain, DispatcherMainQueue>()
-                        .AddSingleton<IWinUIApp, WinUIApp<THostViewModel>>();
+                        .AddSingleton<IWinUIApp, WinUIApp<TMainViewModel>>();
                 }
             )
             .AddOnStarted<IWinUIApp>(

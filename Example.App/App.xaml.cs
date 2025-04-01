@@ -21,7 +21,6 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
-using SingleFinite.Example.App.Views;
 using SingleFinite.Example.Models;
 using SingleFinite.Mvvm;
 using SingleFinite.Mvvm.Services;
@@ -67,7 +66,7 @@ public partial class App : Application
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         _appHost ??= new AppHostBuilder()
-            .AddWinUI<HostViewModel>()
+            .AddWinUI<MainViewModel>()
             .AddExampleViews()
             .BuildAndStart();
 

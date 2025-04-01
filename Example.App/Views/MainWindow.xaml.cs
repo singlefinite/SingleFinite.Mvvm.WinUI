@@ -28,7 +28,7 @@ namespace SingleFinite.Example.App.Views;
 /// <summary>
 /// The host window for the application.
 /// </summary>
-public sealed partial class MainWindow : Window, IView<HostViewModel>
+public sealed partial class MainWindow : Window, IView<MainViewModel>
 {
     #region Constructors
 
@@ -36,7 +36,7 @@ public sealed partial class MainWindow : Window, IView<HostViewModel>
     /// Constructor.
     /// </summary>
     /// <param name="viewModel">The view model for the view.</param>
-    public MainWindow(HostViewModel viewModel)
+    public MainWindow(MainViewModel viewModel)
     {
         ViewModel = viewModel;
         InitializeComponent();
@@ -50,7 +50,7 @@ public sealed partial class MainWindow : Window, IView<HostViewModel>
     /// <summary>
     /// The view model for the view.
     /// </summary>
-    public HostViewModel ViewModel { get; }
+    public MainViewModel ViewModel { get; }
 
     #endregion
 }
