@@ -14,6 +14,7 @@ namespace SingleFinite.Mvvm.WinUI.Internal.Services;
 /// </summary>
 internal sealed partial class WinUIMainDispatcher :
     IApplicationMainDispatcher,
+    IMainDispatcher,
     IDisposable
 {
     #region Fields
