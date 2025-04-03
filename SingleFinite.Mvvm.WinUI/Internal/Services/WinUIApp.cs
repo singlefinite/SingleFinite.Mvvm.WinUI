@@ -24,6 +24,7 @@ using System.Diagnostics;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
+using SingleFinite.Essentials;
 using SingleFinite.Mvvm.Services;
 using SingleFinite.Mvvm.WinUI.Services;
 using Windows.Foundation;
@@ -48,7 +49,7 @@ internal partial class WinUIApp<TMainViewModel>(
     IAppHost appHost,
     IMainWindowProvider mainWindow,
     IViewBuilder viewBuilder,
-    IDispatcherMain mainDispatcher,
+    IMainDispatcher mainDispatcher,
     IExceptionHandler exceptionHandler,
     ICancellationTokenProvider cancellationTokenProvider
 ) :
@@ -84,7 +85,8 @@ internal partial class WinUIApp<TMainViewModel>(
 
         Application.Current.UnhandledException += (sender, e) =>
         {
-            e.Handled = exceptionHandler.Handle(e.Exception);
+            exceptionHandler.Handle(e.Exception);
+            e.Handled = true;
         };
 
         appHost.Closed

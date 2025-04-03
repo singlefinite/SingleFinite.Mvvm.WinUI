@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using SingleFinite.Essentials;
 using SingleFinite.Mvvm;
 using SingleFinite.Mvvm.Services;
 
@@ -31,7 +32,7 @@ public partial class FirstDialogViewModel(IDialogs dialogs) : ViewModel, IClosab
         dialogs.Show<SecondDialogViewModel>();
     }
 
-    public void Close() => _closedSource.RaiseEvent(this);
+    public void Close() => _closedSource.Emit(this);
 
     public Observable<IClosable> Closed => _closedSource.Observable;
     private readonly ObservableSource<IClosable> _closedSource = new();

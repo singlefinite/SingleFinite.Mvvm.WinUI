@@ -60,7 +60,7 @@ public static class AppHostBuilderExtensions
                         {
                             return serviceProvider.GetRequiredService<MainWindow>();
                         })
-                        .AddSingleton<IAppDispatcherMain, DispatcherMainQueue>()
+                        .AddSingleton<IApplicationMainDispatcher, WinUIMainDispatcher>()
                         .AddSingleton<IWinUIApp, WinUIApp<TMainViewModel>>();
                 }
             )

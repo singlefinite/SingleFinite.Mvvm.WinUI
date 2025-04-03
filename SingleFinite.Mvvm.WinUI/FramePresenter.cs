@@ -22,6 +22,7 @@
 using System;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
+using SingleFinite.Essentials;
 using SingleFinite.Mvvm.Services;
 using SingleFinite.Mvvm.WinUI.Internal;
 
